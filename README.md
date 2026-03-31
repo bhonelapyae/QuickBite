@@ -19,7 +19,7 @@ QuickBite/
     ├── src/
     │   └── main/
     │       ├── java/com/quickbite/
-    │       │   ├── entity/      # JPA entities
+    │       │   ├── model/       # JPA models/entities
     │       │   ├── repository/  # Data access layer
     │       │   ├── service/     # Business logic
     │       │   ├── controller/  # REST controllers
@@ -27,7 +27,7 @@ QuickBite/
     │       │   └── QuickBiteApplication.java
     │       └── resources/
     │           ├── application.properties
-    │           └── data.sql       # Sample data
+    │           └── data.sql       # Optional SQL sample data
     └── pom.xml
 ```
 
@@ -90,9 +90,10 @@ QuickBite/
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v14+) for frontend
+- Node.js (v18+) for frontend
 - Java 17+ for backend
 - Maven for building backend
+- PostgreSQL (local instance) for persistence
 
 ### Frontend Setup
 
@@ -115,7 +116,7 @@ QuickBite/
 
 4. **Build for production:**
    ```bash
-   npm build
+   npm run build
    ```
 
 ### Backend Setup
@@ -135,12 +136,13 @@ QuickBite/
    mvn spring-boot:run
    ```
    - Server runs on `http://localhost:8080`
-   - H2 database console at `http://localhost:8080/h2-console`
 
-4. **Database Access:**
-   - URL: `jdbc:h2:mem:quickbitedb`
-   - Username: `sa`
-   - Password: (blank)
+4. **Database (PostgreSQL):**
+   - Ensure PostgreSQL is running locally and a database named `quickbitedb` exists
+   - Default JDBC URL: `jdbc:postgresql://localhost:5432/quickbitedb`
+   - Default username: `postgres`
+   - Default password: `postgres`
+   - Update `src/main/resources/application.properties` if your local settings differ
 
 ## API Documentation
 
@@ -204,7 +206,7 @@ http://localhost:8080/api
 ### Backend
 - **Spring Boot 3.2** - Web framework
 - **Spring Data JPA** - ORM
-- **H2 Database** - In-memory database
+- **PostgreSQL** - Relational database
 - **Lombok** - Code generation
 - **Maven** - Build tool
 
@@ -268,7 +270,7 @@ npm start
 - Frontend communicates with backend via API calls to `http://localhost:8080/api`
 - CORS is enabled for `http://localhost:3000`
 - Cart is stored in browser localStorage
-- Sample data is loaded automatically when backend starts
+- Sample data (categories and menu items) is loaded automatically when the backend starts via a DataLoader component
 - Admin section is not password protected in this version
 
 ## License
