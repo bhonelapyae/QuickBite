@@ -1,0 +1,128 @@
+.cart {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.empty-cart {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.cart-items {
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 150px 150px 100px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-details h4 {
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-details p {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ecf0f1;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.cart-item-controls .qty-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2c3e50;
+  transition: background-color 0.2s;
+}
+
+.cart-item-controls .qty-btn:hover {
+  background-color: #ecf0f1;
+}
+
+.qty-display {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  border-left: 1px solid #ecf0f1;
+  border-right: 1px solid #ecf0f1;
+  padding: 0.25rem 0;
+}
+
+.cart-item-price {
+  text-align: right;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+}
+
+.cart-summary {
+  background-color: #ecf0f1;
+  padding: 1.5rem;
+  border-radius: 4px;
+  text-align: right;
+}
+
+.cart-summary h3 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .cart-item-controls,
+  .cart-item-price,
+  .remove-btn {
+    width: 100%;
+  }
+}

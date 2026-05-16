@@ -1,0 +1,76 @@
+.menu-page {
+  width: 100%;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.menu-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.menu-header p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+.categories-section {
+  margin-bottom: 2rem;
+}
+
+.categories-section h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.category-btn {
+  padding: 0.7rem 1.5rem;
+  border: 2px solid #ecf0f1;
+  background-color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.category-btn.active {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.menu-items-section {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .menu-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .categories-list {
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
