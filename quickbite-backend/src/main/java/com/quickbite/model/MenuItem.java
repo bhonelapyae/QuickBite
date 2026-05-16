@@ -29,6 +29,7 @@ public class MenuItem {
     private BigDecimal price;
     private String imageUrl;
     private Boolean available = true;
+    private String ingredients;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")

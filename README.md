@@ -2,7 +2,37 @@
 
 A modern, full-stack food delivery application built with React and Spring Boot.
 
-## Project Structure
+---
+
+## 🎯 Project Goal
+
+QuickBite is a complete end-to-end food delivery and ordering platform designed to:
+- **Help customers**: Browse menus, add items to cart, and place orders for delivery or pickup
+- **Help administrators**: Manage the menu (add/edit/delete items) and track order statuses in real-time
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **React 19** - Modern UI framework
+- **React Router v6** - Client-side routing
+- **CSS3** - Responsive styling
+- **Context API** - State management (Cart)
+- **Fetch API** - HTTP communication
+- **localStorage** - Persistent cart storage
+
+### Backend
+- **Spring Boot 3.2** - Enterprise web framework
+- **Spring Data JPA** - ORM for database operations
+- **PostgreSQL 42.7.1** - Relational database
+- **Lombok** - Reduces boilerplate code
+- **Maven** - Build and dependency management
+- **Java 21** - Runtime environment
+
+---
+
+## 📦 Project Structure
 
 ```
 QuickBite/
@@ -19,79 +49,97 @@ QuickBite/
     ├── src/
     │   └── main/
     │       ├── java/com/quickbite/
+    │       │   ├── config/      # Configuration (DataLoader, WebConfig)
+    │       │   ├── controller/  # REST controllers
+    │       │   ├── dto/         # Data transfer objects
     │       │   ├── model/       # JPA models/entities
     │       │   ├── repository/  # Data access layer
     │       │   ├── service/     # Business logic
-    │       │   ├── controller/  # REST controllers
-    │       │   ├── dto/         # Data transfer objects
     │       │   └── QuickBiteApplication.java
     │       └── resources/
     │           ├── application.properties
-    │           └── data.sql       # Optional SQL sample data
+    │           └── data.sql
     └── pom.xml
 ```
 
-## Phase 2: Core Functionality Implementation
+---
 
-### Features Implemented
+## ✅ Priority 1 – MUST HAVE Requirements (All Implemented)
 
-#### 1. **Menu Browsing**
-- View all menu items
-- Filter by categories (Burger, Pizza, Drinks, Desserts)
-- View item details including price, description, and images
-- Real-time category filtering
+### 1. Browse Menu by Category
+- ✅ Categories visible when menu page loads
+- ✅ Selecting a category filters items
+- ✅ Each item shows name, price, image
+- ✅ If empty, shows "No items available"
+- **Categories**: Burger, Pizza, Drinks, Desserts, 🍟 Sides, 🌯 Wraps / Sandwiches
 
-**Backend Endpoints:**
-- `GET /api/categories` - Get all categories
-- `GET /api/menu` - Get all menu items
-- `GET /api/menu?category={id}` - Get items by category
-- `GET /api/menu/{id}` - Get menu item details
+### 2. View Menu Item Details
+- ✅ Shows name, price, description, ingredients
+- ✅ Shows "Currently unavailable" if item not available
+- ✅ Page loads quickly (optimized rendering)
 
-#### 2. **Cart Management**
-- Frontend-only cart using React Context
-- Add items to cart with quantity selection
-- Remove items from cart
-- Update item quantities dynamically
-- View cart total price
-- Persistent cart storage (localStorage)
+### 3. Add Items to Cart
+- ✅ Item added on click
+- ✅ Default quantity = 1
+- ✅ Cart updates count
+- ✅ Existing item increases quantity
 
-#### 3. **Order Placement**
-- Checkout page with order form
-- Customer information collection (name, email, phone)
-- Delivery options (Delivery or Pickup)
-- Delivery address collection
-- Order confirmation screen
-- Order ID and total price confirmation
+### 4. Remove Items from Cart
+- ✅ Item removed instantly
+- ✅ Cart total updates
+- ✅ Empty cart shows "Your cart is empty"
 
-**Backend Endpoints:**
-- `POST /api/order` - Create new order
-- `GET /api/order/{id}` - Get order details
+### 5. Change Item Quantity
+- ✅ Increase/decrease quantity
+- ✅ Min = 1, Max = 99
+- ✅ Invalid input shows "Invalid quantity" error
+- ✅ Total updates automatically
 
-#### 4. **Admin Panel**
-- Protected admin section at `/admin`
-- **Order Management:**
-  - View all incoming orders
-  - Update order status (Pending, Preparing, Ready, Delivered)
-  - View order details and items
-- **Menu Management:**
-  - Add new menu items
-  - Edit existing items
-  - Delete menu items
-  - Assign items to categories
+### 6. View Total Price
+- ✅ Total visible in cart
+- ✅ Updates dynamically
+- ✅ Includes prices × quantities
+- ✅ Proper currency format ($X.XX)
 
-**Backend Endpoints:**
-- `GET /api/admin/orders` - Get all orders
-- `GET /api/admin/orders/status/{status}` - Get orders by status
-- `PATCH /api/admin/orders/{id}/status` - Update order status
-- `POST /api/menu` - Create menu item
-- `PUT /api/menu/{id}` - Update menu item
-- `DELETE /api/menu/{id}` - Delete menu item
+### 7. Place Order
+- ✅ Only works if cart not empty
+- ✅ Empty cart shows error
+- ✅ Order saved with "Pending" status
 
-## Getting Started
+### 8. Enter Delivery/Pickup Details
+- ✅ Choose delivery or pickup
+- ✅ Required fields validation
+- ✅ Phone must be numeric
+- ✅ Errors shown for missing fields
+- ✅ Delivery requires address
+- ✅ Pickup requires pickup time
+
+### 9. Receive Order Confirmation
+- ✅ Shows order ID, summary, total price
+- ✅ Status = Confirmed
+- ✅ Error handling if failed
+- ✅ Auto-redirect after confirmation
+
+### 10. Admin – Manage Menu
+- ✅ Admin authentication required (password: `admin123`)
+- ✅ Required fields validation
+- ✅ Changes visible immediately
+- ✅ Prevent deletion if item in active order
+
+### 11. Admin – View Orders
+- ✅ Shows order list (ID, items, price, status)
+- ✅ Sorted by newest first
+- ✅ Statuses: Pending, Preparing, Ready, Completed
+- ✅ Empty shows "No orders yet"
+- ✅ Order details modal shows delivery type, address, and pickup time
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js (v18+) for frontend
-- Java 17+ for backend
+- Java 21+ for backend
 - Maven for building backend
 - PostgreSQL (local instance) for persistence
 
@@ -111,7 +159,7 @@ QuickBite/
    ```bash
    npm start
    ```
-   - The app will open at `http://localhost:3000`
+   - App opens at `http://localhost:3000`
    - Changes auto-reload
 
 4. **Build for production:**
@@ -128,23 +176,26 @@ QuickBite/
 
 2. **Build the project:**
    ```bash
-   mvn clean install
+   mvn clean package -DskipTests
    ```
 
 3. **Run the application:**
    ```bash
    mvn spring-boot:run
    ```
+   - Or use the built JAR: `java -jar target/quickbite-backend-0.1.0.jar`
    - Server runs on `http://localhost:8080`
 
 4. **Database (PostgreSQL):**
-   - Ensure PostgreSQL is running locally and a database named `quickbitedb` exists
+   - Ensure PostgreSQL is running locally and database `quickbitedb` exists
    - Default JDBC URL: `jdbc:postgresql://localhost:5432/quickbitedb`
    - Default username: `postgres`
    - Default password: `postgres`
-   - Update `src/main/resources/application.properties` if your local settings differ
+   - Update `src/main/resources/application.properties` if needed
 
-## API Documentation
+---
+
+## 📚 API Documentation
 
 ### Base URL
 ```
@@ -172,7 +223,9 @@ http://localhost:8080/api
 - **GET** `/admin/orders/status/{status}` - Get orders by status
 - **PATCH** `/admin/orders/{id}/status?status={newStatus}` - Update order status
 
-## Sample Order Request
+---
+
+## 📝 Sample Order Request
 
 ```json
 {
@@ -194,38 +247,26 @@ http://localhost:8080/api
 }
 ```
 
-## Technology Stack
+---
 
-### Frontend
-- **React 19** - UI framework
-- **React Router v6** - Client-side routing
-- **CSS3** - Styling
-- **Context API** - State management (Cart)
-- **Fetch API** - HTTP requests
-
-### Backend
-- **Spring Boot 3.2** - Web framework
-- **Spring Data JPA** - ORM
-- **PostgreSQL** - Relational database
-- **Lombok** - Code generation
-- **Maven** - Build tool
-
-## Component Structure
+## 🏗️ Component Structure
 
 ### Frontend Components
-- **MenuItemCard** - Displays individual menu item with add to cart
+- **MenuItemCard** - Displays menu item with add to cart
 - **MenuList** - Grid of menu items
 - **Cart** - Shopping cart display and management
-- **OrderForm** - Customer information and order form
-- **AdminPanel** - Admin dashboard for orders and menu items
+- **OrderForm** - Customer info and order form
+- **AdminPanel** - Admin dashboard for orders and menu
 
 ### Pages
-- **Home** - Landing page with features showcase
-- **Menu** - Menu browsing with category filtering
+- **Home** - Landing page
+- **Menu** - Menu browsing with filtering
 - **Checkout** - Cart review and order placement
-- **Admin** - Admin dashboard (Orders & Menu Management)
+- **Admin** - Admin dashboard
 
-## Features Highlight
+---
+
+## 🎨 Features Highlight
 
 ✅ Responsive design (mobile, tablet, desktop)
 ✅ Real-time cart updates
@@ -237,8 +278,11 @@ http://localhost:8080/api
 ✅ Professional UI/UX
 ✅ Error handling and validation
 ✅ RESTful API architecture
+✅ Sample data auto-loaded on startup
 
-## Future Enhancements (Phase 3+)
+---
+
+## 🔮 Future Enhancements (Phase 3+)
 
 - User authentication and registration
 - Order history for logged-in users
@@ -251,29 +295,19 @@ http://localhost:8080/api
 - Mobile app (React Native)
 - Chat support
 
-## Running Both Frontend and Backend
+---
 
-### Terminal 1 - Backend
-```bash
-cd quickbite-backend
-mvn spring-boot:run
-```
+## 📝 Notes
 
-### Terminal 2 - Frontend
-```bash
-cd quickbite-frontend
-npm start
-```
+- Frontend communicates with backend at `http://localhost:8080/api`
+- CORS enabled for `http://localhost:3000`
+- Cart stored in browser localStorage
+- Sample data loaded automatically via DataLoader
+- Admin password: `admin123` (demo-only, not production-ready)
 
-## Notes
+---
 
-- Frontend communicates with backend via API calls to `http://localhost:8080/api`
-- CORS is enabled for `http://localhost:3000`
-- Cart is stored in browser localStorage
-- Sample data (categories and menu items) is loaded automatically when the backend starts via a DataLoader component
-- Admin section is not password protected in this version
-
-## License
+## 📄 License
 
 MIT License
 

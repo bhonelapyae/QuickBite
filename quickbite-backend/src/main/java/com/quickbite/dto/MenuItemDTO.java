@@ -18,4 +18,5 @@ public class MenuItemDTO {
     private Boolean available;
     private Long categoryId;
     private String categoryName;
+    private String ingredients;
 }

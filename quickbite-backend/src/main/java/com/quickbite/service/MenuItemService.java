@@ -11,6 +11,7 @@ import com.quickbite.model.Category;
 import com.quickbite.model.MenuItem;
 import com.quickbite.repository.CategoryRepository;
 import com.quickbite.repository.MenuItemRepository;
+import com.quickbite.repository.OrderItemRepository;
 
 @Service
 public class MenuItemService {
@@ -20,6 +21,9 @@ public class MenuItemService {
     
     @Autowired
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private OrderItemRepository orderItemRepository;
     
     public List<MenuItemDTO> getAllMenuItems() {
         return menuItemRepository.findAll()
@@ -48,6 +52,7 @@ public class MenuItemService {
         menuItem.setPrice(menuItemDTO.getPrice());
         menuItem.setImageUrl(menuItemDTO.getImageUrl());
         menuItem.setAvailable(menuItemDTO.getAvailable() != null ? menuItemDTO.getAvailable() : true);
+        menuItem.setIngredients(menuItemDTO.getIngredients());
         
         if (menuItemDTO.getCategoryId() != null) {
             Category category = categoryRepository.findById(menuItemDTO.getCategoryId())
@@ -68,6 +73,7 @@ public class MenuItemService {
         menuItem.setPrice(menuItemDTO.getPrice());
         menuItem.setImageUrl(menuItemDTO.getImageUrl());
         menuItem.setAvailable(menuItemDTO.getAvailable());
+        menuItem.setIngredients(menuItemDTO.getIngredients());
         
         if (menuItemDTO.getCategoryId() != null) {
             Category category = categoryRepository.findById(menuItemDTO.getCategoryId())
@@ -80,6 +86,9 @@ public class MenuItemService {
     }
     
     public void deleteMenuItem(Long id) {
+        if (orderItemRepository.existsByMenuItem_Id(id)) {
+            throw new RuntimeException("Cannot delete item that is part of an active order");
+        }
         menuItemRepository.deleteById(id);
     }
     
@@ -95,6 +104,7 @@ public class MenuItemService {
             dto.setCategoryId(menuItem.getCategory().getId());
             dto.setCategoryName(menuItem.getCategory().getName());
         }
+        dto.setIngredients(menuItem.getIngredients());
         return dto;
     }
 }

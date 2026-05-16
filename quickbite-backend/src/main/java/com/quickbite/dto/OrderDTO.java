@@ -18,6 +18,7 @@ public class OrderDTO {
     private String customerPhone;
     private String deliveryAddress;
     private String deliveryType;
+    private String pickupTime;
     private BigDecimal totalPrice;
     private String status;
     private List<OrderItemDTO> items;

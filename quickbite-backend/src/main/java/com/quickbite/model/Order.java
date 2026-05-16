@@ -33,6 +33,7 @@ public class Order {
     private String customerPhone;
     private String deliveryAddress;
     private String deliveryType;
+    private String pickupTime;
     private BigDecimal totalPrice;
     private String status;
     

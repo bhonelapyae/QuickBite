@@ -7,4 +7,5 @@ import com.quickbite.model.OrderItem;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+    boolean existsByMenuItem_Id(Long menuItemId);
 }

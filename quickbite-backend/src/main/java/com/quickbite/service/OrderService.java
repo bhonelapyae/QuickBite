@@ -33,6 +33,7 @@ public class OrderService {
         order.setCustomerPhone(request.getCustomerPhone());
         order.setDeliveryAddress(request.getDeliveryAddress());
         order.setDeliveryType(request.getDeliveryType());
+        order.setPickupTime(request.getPickupTime());
         
         BigDecimal totalPrice = BigDecimal.ZERO;
         List<OrderItem> orderItems = new java.util.ArrayList<>();
@@ -94,6 +95,7 @@ public class OrderService {
         dto.setCustomerPhone(order.getCustomerPhone());
         dto.setDeliveryAddress(order.getDeliveryAddress());
         dto.setDeliveryType(order.getDeliveryType());
+        dto.setPickupTime(order.getPickupTime());
         dto.setTotalPrice(order.getTotalPrice());
         dto.setStatus(order.getStatus());
         dto.setCreatedAt(order.getCreatedAt());

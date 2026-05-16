@@ -15,5 +15,6 @@ public class CreateOrderRequest {
     private String customerPhone;
     private String deliveryAddress;
     private String deliveryType; // "delivery" or "pickup"
+    private String pickupTime;
     private List<CartItemDTO> items;
 }
